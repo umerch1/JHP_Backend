@@ -1,0 +1,56 @@
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Expo / React Native specific
+.expo/
+.expo-shared/
+android/app/build/
+ios/build/
+ios/Pods/
+
+# React Native config caches
+*.keystore
+*.jks
+*.p12
+*.key
+*.mobileprovision
+*.xcuserstate
+
+# Metro / Babel / Cache
+.cache/
+.babelrc.js
+babel.config.js
+metro.config.js
+
+# VSCode / IDE settings
+.vscode/
+.idea/
+
+# Coverage
+coverage/
+
+# Misc
+*.tgz
+*.zip
