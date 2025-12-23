@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema(
     address: String,
     city: String,
     role: { type: String, enum: ["jobseeker", "employer", "admin"] },
-    cv: String, // file path or URL
+    cv: {
+      type: String
+    }, // file path or URL
     status: {
       type: String,
       enum: ["pending", "approved", "rejected"],
