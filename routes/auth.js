@@ -8,13 +8,15 @@ const router = express.Router();
 // Register user
 router.post("/register", async (req, res) => {
   try {
-    const { firstName, mobile, email, pin, address, city, role } = req.body;
+    const { firstName, lastName, mobile, email, pin, address, city, role } =
+      req.body;
 
     // Hash PIN before saving
     const hashedPin = await bcrypt.hash(pin, 10);
 
     const user = new User({
       firstName,
+      lastName,
       mobile,
       email,
       pin: hashedPin,

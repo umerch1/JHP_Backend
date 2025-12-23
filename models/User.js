@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema(
   {
     firstName: String,
+    lastName: String,
     mobile: String,
     email: { type: String, unique: true },
     pin: String, // hashed 4-digit PIN
