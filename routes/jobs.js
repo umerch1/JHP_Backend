@@ -1,5 +1,6 @@
 import express from "express";
 import Post from "../models/Post.js";
+import User from "../models/User.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 
 const router = express.Router();
@@ -52,18 +53,21 @@ router.get("/:jobId", async (req, res) => {
   }
 });
 
-// Apply to a job (only jobseeker role)
-router.post("/:jobId/apply", authMiddleware, async (req, res) => {
+// Apply to a job providing userId in params (no authMiddleware)
+router.post("/:jobId/apply/:userId", async (req, res) => {
   try {
-    const user = req.user;
+    const { jobId, userId } = req.params;
+
+    // Validate user exists and is a jobseeker
+    const user = await User.findById(userId);
     if (!user || (user.role && user.role !== "jobseeker")) {
       return res.status(403).json({ message: "Only jobseekers can apply to jobs" });
     }
 
-    const job = await Post.findById(req.params.jobId);
+    const job = await Post.findById(jobId);
     if (!job) return res.status(404).json({ message: "Job not found" });
 
-    const applicantId = user.id || user._id;
+    const applicantId = user._id;
     const alreadyApplied = job.applicants && job.applicants.some(a => a.toString() === applicantId.toString());
     if (alreadyApplied) return res.status(400).json({ message: "Already applied" });
 
