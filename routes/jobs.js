@@ -78,7 +78,7 @@ router.get("/employer/:employerId/applicants", async (req, res) => {
     const uniqueIds = [...new Set(ids)];
     if (uniqueIds.length === 0) return res.json({ employerId, totalApplicants: 0, applicants: [] });
 
-    const applicants = await User.find({ _id: { $in: uniqueIds } }).select("firstName lastName email role");
+    const applicants = await User.find({ _id: { $in: uniqueIds } }).select("firstName lastName email role cv");
 
     res.json({ employerId, totalApplicants: applicants.length, applicants });
   } catch (error) {

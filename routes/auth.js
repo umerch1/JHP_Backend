@@ -78,7 +78,7 @@ const router = express.Router();
  */
 router.post("/register", async (req, res) => {
   try {
-    const { firstName, lastName, mobile, email, pin, address, city, role } =
+    const { firstName, lastName, mobile, email, pin, address, city, role, cv } =
       req.body;
 
     // Hash PIN before saving
@@ -93,6 +93,7 @@ router.post("/register", async (req, res) => {
       address,
       city,
       role,
+      cv
     });
 
     await user.save();
