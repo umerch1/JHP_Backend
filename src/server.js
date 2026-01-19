@@ -23,7 +23,7 @@ app.use("/api/user", userRoutes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/jobportal");
+mongoose.connect("mongodb+srv://jhp-user:evz4mZbm8JwNUf6z@jhp.eqbqcrc.mongodb.net/?appName=jhp/jobportal");
 
 // Routes (we’ll add them below)
 app.get("/", (req, res) => res.send("Job Portal API running"));
