@@ -8,6 +8,8 @@ import uploadRoutes from "./routes/upload.js";
 import jobsRoutes from "./routes/jobs.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./swagger/swagger.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -23,9 +25,9 @@ app.use("/api/user", userRoutes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://jhp-user:evz4mZbm8JwNUf6z@jhp.eqbqcrc.mongodb.net/?appName=jhp/jobportal");
+mongoose.connect(process.env.MONGO_URI);
 
 // Routes (we’ll add them below)
 app.get("/", (req, res) => res.send("Job Portal API running"));
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.listen(process.env.PORT, () => console.log("Server running on port " + process.env.PORT));
